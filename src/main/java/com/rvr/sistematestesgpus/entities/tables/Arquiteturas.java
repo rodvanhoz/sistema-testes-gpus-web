@@ -8,6 +8,10 @@ public class Arquiteturas implements Serializable {
 	private Integer idArquitetura;
 	private String nomeArquitetura;
 	
+	public Arquiteturas() {
+		
+	}
+	
 	public Arquiteturas(Integer idArquitetura, String nomeArquitetura) {
 		this.idArquitetura = idArquitetura;
 		this.nomeArquitetura = nomeArquitetura;

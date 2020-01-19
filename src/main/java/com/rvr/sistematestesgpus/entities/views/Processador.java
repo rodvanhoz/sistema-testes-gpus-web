@@ -18,6 +18,10 @@ public class Processador implements Serializable {
 	private String graficoIntegrado;
 	private int idDadosProcessador;
 	
+	public Processador() {
+		
+	}
+	
 	public Processador(Integer idProcessador, String nomeFabricante, String nomeModelo, Integer nroCores,
 			Integer nroThreads, Double tdp, Double frequencia, Double turboFrequencia, String codeName, String socket,
 			String graficoIntegrado, int idDadosProcessador) {

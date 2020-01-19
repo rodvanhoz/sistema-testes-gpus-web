@@ -26,6 +26,10 @@ public class Processadores implements Serializable {
 	private Gpus Gpu;
 	private Double tdp;
 	
+	public Processadores() {
+		
+	}
+	
 	public Processadores(Integer idProcessador, DadosProcessador dadosProcessador,
 			String nomeFabricante, String nomeModelo, String market, Date released, String codename, String generation,
 			String memorySupport, Double frequencia, Double turbofrequencia, Double baseClock, Double multiplicador,

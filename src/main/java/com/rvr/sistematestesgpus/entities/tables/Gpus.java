@@ -23,6 +23,10 @@ public class Gpus implements Serializable {
 	private String busInterface;
 	private Date dtLancto;
 	
+	public Gpus() {
+		
+	}
+	
 	public Gpus(Integer idGpu, ProcessadorGrafico processadorGrafico,
 			CaracteristicasGraficas caracteristicasGraficas,
 			RenderConfig renderConfig, String nomeFabricante, String nomeModelo,

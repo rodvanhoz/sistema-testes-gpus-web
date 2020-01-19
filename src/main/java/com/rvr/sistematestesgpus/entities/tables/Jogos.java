@@ -2,13 +2,37 @@ package com.rvr.sistematestesgpus.entities.tables;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
+@Table(name = "Jogos")
 public class Jogos implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idJogo;
+	
 	private String nomeJogo;
 	private Date dtLancto;
+	
+	@OneToMany(mappedBy = "id.jogo")
+	private Set<ConfiguracoesJogos> configuracoes = new HashSet<>();
+	
+	public Jogos() {
+		
+	}
 	
 	public Jogos(Integer idJogo, String nomeJogo, Date dtLancto) {
 		this.idJogo = idJogo;
@@ -48,6 +72,41 @@ public class Jogos implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	
+	public Set<ConfiguracoesJogos> getConfiguracoes() {
+		return configuracoes;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((dtLancto == null) ? 0 : dtLancto.hashCode());
+		result = prime * result + ((nomeJogo == null) ? 0 : nomeJogo.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Jogos other = (Jogos) obj;
+		if (dtLancto == null) {
+			if (other.dtLancto != null)
+				return false;
+		} else if (!dtLancto.equals(other.dtLancto))
+			return false;
+		if (nomeJogo == null) {
+			if (other.nomeJogo != null)
+				return false;
+		} else if (!nomeJogo.equals(other.nomeJogo))
+			return false;
+		return true;
 	}
 
 	@Override

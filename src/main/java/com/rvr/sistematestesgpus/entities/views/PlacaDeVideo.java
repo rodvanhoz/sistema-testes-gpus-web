@@ -29,6 +29,10 @@ public class PlacaDeVideo implements Serializable {
 	private String busInterface;
 	private Date dtLancto;
 	
+	public PlacaDeVideo() {
+		
+	}
+	
 	public PlacaDeVideo(Integer idGpu, String nomeFabricante, String nomeModelo, String nomeGpu, String arquitetura,
 			Integer shadingUnits, Integer rops, Integer tmus, Integer tamMemoriaKB, String tpMemoria, Double gpuClock,
 			Double boostClock, String directX, String openGL, String openCL, String vulkan, Double memClock, Double memClockEfetivo, 

@@ -13,6 +13,10 @@ public class CaracteristicasGraficas implements Serializable {
 	private String cuda;
 	private String shaderModel;
 	
+	public CaracteristicasGraficas() {
+		
+	}
+	
 	public CaracteristicasGraficas(Integer idCaracGrafica, String directX, String openGL, String openCL, String vulkan,
 			String cuda, String shaderModel) {
 		this.idCaracGrafica = idCaracGrafica;

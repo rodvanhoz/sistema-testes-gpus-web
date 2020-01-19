@@ -14,6 +14,10 @@ public class ProcessadorGrafico implements Serializable {
 	private Double nroTransistors;
 	private Integer mmProcessador;
 	
+	public ProcessadorGrafico() {
+		
+	}
+	
 	public ProcessadorGrafico(Integer idProcGrafico, String nomeGpu, String variantGpu, String arquitetura,
 			String fundicao, Integer nnProcessador, Double nroTransistors, Integer mmProcessador) {
 		this.idProcGrafico = idProcGrafico;

@@ -2,9 +2,20 @@ package com.rvr.sistematestesgpus.entities.tables;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "DadosProcessador")
 public class DadosProcessador implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idDadosProcessador;
 	private String socket;
 	private String foundry;
@@ -12,6 +23,10 @@ public class DadosProcessador implements Serializable {
 	private Double transistors;
 	private String packag;
 	private Double tCaseMax;
+	
+	public DadosProcessador() {
+		
+	}
 	
 	public DadosProcessador(Integer idDadosProcessador, String socket, String foundry, Integer processSize,
 			Double transistors, String packag, Double tCaseMax) {

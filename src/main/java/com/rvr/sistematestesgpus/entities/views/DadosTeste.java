@@ -30,6 +30,10 @@ public class DadosTeste implements Serializable {
 	private Integer idGpu; 
 	private Integer idProcessador;
 	
+	public DadosTeste() {
+		
+	}
+		
 	public DadosTeste(String nomeModeloGpu, String nomeModeloProcessador, String nomeJogo, Integer resolucaoAbrev,
 			String qualidadeGrafica, String api, String fxaa, String ssao, String aa, String rt, String taa,
 			String nVidiaTec, Double avgFps, Double minFps, String nomeTester, Date dtTeste, String nomeDriverGpu,

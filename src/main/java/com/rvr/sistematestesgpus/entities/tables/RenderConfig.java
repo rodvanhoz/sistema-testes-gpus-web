@@ -15,6 +15,10 @@ public class RenderConfig implements Serializable {
 	private Integer tensorCores;
 	private Integer rtCores;
 	
+	public RenderConfig() {
+		
+	}
+	
 	public RenderConfig(Integer idRenderConfig, Integer shadingUnits, Integer tmus, Integer rops, Integer smCount,
 			Integer l1Cache, Integer l2Cache, Integer tensorCores, Integer rtCores) {
 		this.idRenderConfig = idRenderConfig;

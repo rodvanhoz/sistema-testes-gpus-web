@@ -16,6 +16,10 @@ public class TestesGpu implements Serializable {
 	private Date dtTeste;
 	private String nomeTester;
 	
+	public TestesGpu() {
+		
+	}
+	
 	public TestesGpu(Integer idTesteGpu, ConfiguracoesJogos configuracaoJogo, Gpus gpu, Processadores processador,
 			String nomeDriverGpu, Double avgFps, Double minFps, Date dtTeste, String nomeTester) {
 		this.idTesteGpu = idTesteGpu;
