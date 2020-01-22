@@ -3,11 +3,28 @@ package com.rvr.sistematestesgpus.entities.tables;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Processadores")
 public class Processadores implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idProcessador;
-	private DadosProcessador DadosProcessador;
+	
+	@OneToOne
+	@MapsId
+	private DadosProcessador dadosProcessador;
+	
 	private String nomeFabricante;
 	private String nomeModelo;
 	private String market;
@@ -35,7 +52,7 @@ public class Processadores implements Serializable {
 			String memorySupport, Double frequencia, Double turbofrequencia, Double baseClock, Double multiplicador,
 			String multiplDesbloqueado, Integer nroCores, Integer nroThreads, Integer smp, Gpus gpu, Double tdp) {
 		this.idProcessador = idProcessador;
-		this.DadosProcessador = dadosProcessador;
+		this.dadosProcessador = dadosProcessador;
 		this.nomeFabricante = nomeFabricante;
 		this.nomeModelo = nomeModelo;
 		this.market = market;
@@ -64,11 +81,11 @@ public class Processadores implements Serializable {
 	}
 
 	public DadosProcessador getDadosProcessador() {
-		return DadosProcessador;
+		return dadosProcessador;
 	}
 
 	public void setDadosProcessador(DadosProcessador dadosProcessador) {
-		DadosProcessador = dadosProcessador;
+		this.dadosProcessador = dadosProcessador;
 	}
 
 	public String getNomeFabricante() {
@@ -210,6 +227,8 @@ public class Processadores implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
+	
 
 	@Override
 	public String toString() {

@@ -3,13 +3,36 @@ package com.rvr.sistematestesgpus.entities.tables;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Gpus")
 public class Gpus implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idGpu;
-	private ProcessadorGrafico ProcessadorGrafico;
-	private CaracteristicasGraficas CaracteristicasGraficas;
-	private RenderConfig RenderConfig;
+	
+	@OneToOne
+	@MapsId
+	private ProcessadorGrafico processadorGrafico;
+	
+	@OneToOne
+	@MapsId
+	private CaracteristicasGraficas caracteristicasGraficas;
+	
+	@OneToOne
+	@MapsId
+	private RenderConfig renderConfig;
+	
 	private String nomeFabricante;
 	private String nomeModelo;
 	private Integer tamMemoriaKB;
@@ -33,9 +56,9 @@ public class Gpus implements Serializable {
 			Integer tamMemoriaKB, String tpMemoria, Integer tamBanda, Double tdp, Double gpuClock, Double boostClock,
 			Double memClock, Double memClockEfetivo, String busInterface, Date dtLancto) {
 		this.idGpu = idGpu;
-		this.ProcessadorGrafico = processadorGrafico;
-		this.CaracteristicasGraficas = caracteristicasGraficas;
-		this.RenderConfig = renderConfig;
+		this.processadorGrafico = processadorGrafico;
+		this.caracteristicasGraficas = caracteristicasGraficas;
+		this.renderConfig = renderConfig;
 		this.nomeFabricante = nomeFabricante;
 		this.nomeModelo = nomeModelo;
 		this.tamMemoriaKB = tamMemoriaKB;
@@ -59,27 +82,27 @@ public class Gpus implements Serializable {
 	}
 
 	public ProcessadorGrafico getProcessadorGrafico() {
-		return ProcessadorGrafico;
+		return processadorGrafico;
 	}
 
 	public void setProcessadorGrafico(ProcessadorGrafico processadorGrafico) {
-		ProcessadorGrafico = processadorGrafico;
+		this.processadorGrafico = processadorGrafico;
 	}
 
 	public CaracteristicasGraficas getCaracteristicasGraficas() {
-		return CaracteristicasGraficas;
+		return caracteristicasGraficas;
 	}
 
 	public void setCaracteristicasGraficas(CaracteristicasGraficas caracteristicasGraficas) {
-		CaracteristicasGraficas = caracteristicasGraficas;
+		this.caracteristicasGraficas = caracteristicasGraficas;
 	}
 
 	public RenderConfig getRenderConfig() {
-		return RenderConfig;
+		return renderConfig;
 	}
 
 	public void setRenderConfig(RenderConfig renderConfig) {
-		RenderConfig = renderConfig;
+		this.renderConfig = renderConfig;
 	}
 
 	public String getNomeFabricante() {
@@ -184,8 +207,8 @@ public class Gpus implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Gpus [idGpu=" + idGpu + ", ProcessadorGrafico=" + ProcessadorGrafico.getNomeGpu() + ", CaracteristicasGraficas="
-				+ CaracteristicasGraficas.getDirectX() + ", RenderConfig=" + RenderConfig.getIdRenderConfig() + ", nomeFabricante=" + nomeFabricante
+		return "Gpus [idGpu=" + idGpu + ", ProcessadorGrafico=" + processadorGrafico.getNomeGpu() + ", CaracteristicasGraficas="
+				+ caracteristicasGraficas.getDirectX() + ", RenderConfig=" + renderConfig.getIdRenderConfig() + ", nomeFabricante=" + nomeFabricante
 				+ ", nomeModelo=" + nomeModelo + ", tamMemoriaKB=" + tamMemoriaKB + ", tpMemoria=" + tpMemoria
 				+ ", tamBanda=" + tamBanda + ", tdp=" + tdp + ", gpuClock=" + gpuClock + ", boostClock=" + boostClock
 				+ ", memClock=" + memClock + ", memClockEfetivo=" + memClockEfetivo + ", busInterface=" + busInterface

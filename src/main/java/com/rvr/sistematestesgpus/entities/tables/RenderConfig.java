@@ -2,9 +2,24 @@ package com.rvr.sistematestesgpus.entities.tables;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
+@Table(name = "RenderConfig")
 public class RenderConfig implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idRenderConfig;
 	private Integer shadingUnits;
 	private Integer tmus;
@@ -14,6 +29,10 @@ public class RenderConfig implements Serializable {
 	private Integer L2Cache;
 	private Integer tensorCores;
 	private Integer rtCores;
+	
+	@JsonIgnore
+	@OneToOne(mappedBy = "renderConfig", cascade = CascadeType.ALL)
+	private Gpus gpu;
 	
 	public RenderConfig() {
 		
@@ -106,6 +125,75 @@ public class RenderConfig implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public Gpus getGpu() {
+		return gpu;
+	}
+
+	public void setGpu(Gpus gpu) {
+		this.gpu = gpu;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((L2Cache == null) ? 0 : L2Cache.hashCode());
+		result = prime * result + ((rops == null) ? 0 : rops.hashCode());
+		result = prime * result + ((rtCores == null) ? 0 : rtCores.hashCode());
+		result = prime * result + ((shadingUnits == null) ? 0 : shadingUnits.hashCode());
+		result = prime * result + ((smCount == null) ? 0 : smCount.hashCode());
+		result = prime * result + ((tensorCores == null) ? 0 : tensorCores.hashCode());
+		result = prime * result + ((tmus == null) ? 0 : tmus.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		RenderConfig other = (RenderConfig) obj;
+		if (L2Cache == null) {
+			if (other.L2Cache != null)
+				return false;
+		} else if (!L2Cache.equals(other.L2Cache))
+			return false;
+		if (rops == null) {
+			if (other.rops != null)
+				return false;
+		} else if (!rops.equals(other.rops))
+			return false;
+		if (rtCores == null) {
+			if (other.rtCores != null)
+				return false;
+		} else if (!rtCores.equals(other.rtCores))
+			return false;
+		if (shadingUnits == null) {
+			if (other.shadingUnits != null)
+				return false;
+		} else if (!shadingUnits.equals(other.shadingUnits))
+			return false;
+		if (smCount == null) {
+			if (other.smCount != null)
+				return false;
+		} else if (!smCount.equals(other.smCount))
+			return false;
+		if (tensorCores == null) {
+			if (other.tensorCores != null)
+				return false;
+		} else if (!tensorCores.equals(other.tensorCores))
+			return false;
+		if (tmus == null) {
+			if (other.tmus != null)
+				return false;
+		} else if (!tmus.equals(other.tmus))
+			return false;
+		return true;
 	}
 
 	@Override
