@@ -7,6 +7,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SistemaTestesGpusWebApplication {
 
 	public static void main(String[] args) {
+		
+		// testando o push pelo mac
 		SpringApplication.run(SistemaTestesGpusWebApplication.class, args);
 	}
 
