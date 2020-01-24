@@ -96,18 +96,19 @@ public class TestConfig implements CommandLineRunner {
 		caracteristicasGraficasRepository.saveAll(Arrays.asList(cg1, cg2, cg3));
 		renderConfigRepository.saveAll(Arrays.asList(rc1, rc2, rc3));
 
-		Gpus g1 = new Gpus(null, pg1, cg1, rc1, "NVIDIA", "GeForce RTX 2060 SUPER", 8192, "GDDR6", 256, 160.0, 1470.0, 1650.0, 1750.0, 14000.0, "PCIe 3.0 x16", sdf.parse("10/01/2010"));
+		Gpus g1 = new Gpus(null, pg1, cg1, rc2, "NVIDIA", "GeForce RTX 2070 SUPER", 8192, "GDDR6", 256, 160.0, 1470.0, 1650.0, 1750.0, 14000.0, "PCIe 3.0 x16", sdf.parse("10/01/2010"));
+		Gpus g2 = new Gpus(null, pg2, cg3, rc1, "NVIDIA", "GeForce RTX 2080 SUPER", 8192, "GDDR6", 256, 160.0, 1470.0, 1650.0, 1750.0, 14000.0, "PCIe 3.0 x16", sdf.parse("10/01/2010"));
+		Gpus g3 = new Gpus(null, pg3, cg2, rc3, "NVIDIA", "GeForce RTX 2060 SUPER", 8192, "GDDR6", 256, 160.0, 1470.0, 1650.0, 1750.0, 14000.0, "PCIe 3.0 x16", sdf.parse("10/01/2010"));
 		
-		pg1.setGpu(g1);
-		cg1.setGpu(g1);
-		rc1.setGpu(g1);
+//		pg1.setGpu(g1);
+//		cg1.setGpu(g1);
+//		rc1.setGpu(g1);
 		
 //		processadorGraficoRepository.saveAll(Arrays.asList(pg1));
 //		caracteristicasGraficasRepository.saveAll(Arrays.asList(cg1));
 //		renderConfigRepository.saveAll(Arrays.asList(rc1));
 		
-		gpuRepository.saveAll(Arrays.asList(g1));
-		
+		gpuRepository.saveAll(Arrays.asList(g1, g2, g3));
 }
 	
 	
