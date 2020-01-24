@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -22,15 +23,15 @@ public class Gpus implements Serializable {
 	private Integer idGpu;
 	
 	@OneToOne
-	@MapsId
+	@JoinColumn(name = "IdProcessadorGrafico")
 	private ProcessadorGrafico processadorGrafico;
 	
 	@OneToOne
-	@MapsId
+	@JoinColumn(name = "IdCaracteristicasGraficas")
 	private CaracteristicasGraficas caracteristicasGraficas;
 	
 	@OneToOne
-	@MapsId
+	@JoinColumn(name = "IdRenderConfig")
 	private RenderConfig renderConfig;
 	
 	private String nomeFabricante;
