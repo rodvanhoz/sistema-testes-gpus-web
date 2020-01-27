@@ -2,13 +2,13 @@ package com.rvr.sistematestesgpus.entities.tables;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -24,8 +24,8 @@ public class Jogos implements Serializable {
 	private String nomeJogo;
 	private Date dtLancto;
 	
-	@OneToOne(mappedBy = "jogo", cascade = CascadeType.ALL)
-	private ConfiguracoesJogos configuracaoJogo;
+	@OneToMany(mappedBy = "jogo")
+	private List<ConfiguracoesJogos> configuracaoJogo;
 	
 	public Jogos() {
 		

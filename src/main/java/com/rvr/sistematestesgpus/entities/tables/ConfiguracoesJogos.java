@@ -7,7 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -20,12 +20,11 @@ public class ConfiguracoesJogos implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idConfiguracaoJogos;
 	
-	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "IdJogo")
 	private Jogos jogo;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "IdConfiguracao")
 	private Configuracoes configuracao;
 	

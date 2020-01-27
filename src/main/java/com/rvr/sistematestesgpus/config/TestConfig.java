@@ -82,7 +82,6 @@ public class TestConfig implements CommandLineRunner {
 		configuracoesJogosRepository.saveAll(Arrays.asList(cj1, cj2, cj3));
 		
 		DadosProcessador dp1 = new DadosProcessador(null, "Intel Socket 1151", "Intel", 14, null, "FC-LGA1151", 72.0);
-		
 		Processadores p1 = new Processadores(null, dp1, "Intel", "Core i7-8700", "Desktop",  sdf.parse("10/01/2010"), "Coffee Lake", null, "DDR4", 3200.0, 4600.0, 100.0, 32.0, "N", 6, 12, 1, null, 65.0);
 		dp1.setProcessador(p1);
 		dadosProcessadorRepository.saveAll(Arrays.asList(dp1));

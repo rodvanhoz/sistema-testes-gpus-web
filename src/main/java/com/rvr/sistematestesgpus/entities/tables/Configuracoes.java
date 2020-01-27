@@ -1,12 +1,13 @@
 package com.rvr.sistematestesgpus.entities.tables;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -30,8 +31,8 @@ public class Configuracoes implements Serializable {
 	private String aa;
 	private String NVidiaTec;
 	
-	@OneToOne(mappedBy = "configuracao")
-	private ConfiguracoesJogos configuracaoJogo;
+	@OneToMany(mappedBy = "configuracao")
+	private List<ConfiguracoesJogos> configuracaoJogo;
 	
 	public Configuracoes() {
 		
