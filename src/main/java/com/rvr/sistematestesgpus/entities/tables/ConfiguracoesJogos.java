@@ -2,12 +2,13 @@ package com.rvr.sistematestesgpus.entities.tables;
 
 import java.io.Serializable;
 
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.rvr.sistematestesgpus.entities.tables.pk.ConfiguracoesJogosPK;
 
 @Entity
 @Table(name = "ConfiguracoesJogos")
@@ -15,68 +16,56 @@ public class ConfiguracoesJogos implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	@EmbeddedId
-	private ConfiguracoesJogosPK id = new ConfiguracoesJogosPK();
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer idConfiguracaoJogos;
+	
+	
+	@OneToOne
+	@JoinColumn(name = "IdJogo")
+	private Jogos jogo;
+	
+	@OneToOne
+	@JoinColumn(name = "IdConfiguracao")
+	private Configuracoes configuracao;
 	
 	public ConfiguracoesJogos() {
 		
 	}
 	
 	public ConfiguracoesJogos(Jogos jogo, Configuracoes configuracao) {
-		this.id.setJogo(jogo);
-		this.id.setConfiguracao(configuracao);
+		this.jogo = jogo;
+		this.configuracao = configuracao;
 	}
-	
-	@JsonIgnore
+
+	public Integer getIdConfiguracaoJogos() {
+		return idConfiguracaoJogos;
+	}
+
+	public void setIdConfiguracaoJogos(Integer idConfiguracaoJogos) {
+		this.idConfiguracaoJogos = idConfiguracaoJogos;
+	}
+
 	public Jogos getJogo() {
-		return id.getJogo();
+		return jogo;
 	}
 
 	public void setJogo(Jogos jogo) {
-		id.setJogo(jogo);
+		this.jogo = jogo;
 	}
 
 	public Configuracoes getConfiguracao() {
-		return id.getConfiguracao();
+		return configuracao;
 	}
 
 	public void setConfiguracao(Configuracoes configuracao) {
-		id.setConfiguracao(configuracao);
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ConfiguracoesJogos other = (ConfiguracoesJogos) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		return true;
+		this.configuracao = configuracao;
 	}
 
 	@Override
 	public String toString() {
-		return "ConfiguracoesJogos: , Jogo=" + id.getJogo().getNomeJogo() + ", Configuracao="
-				+ id.getConfiguracao().getQualidadeGrafica() + "]";
+		return "ConfiguracoesJogos: , Jogo=" + jogo.getNomeJogo() + ", Configuracao="
+				+ configuracao.getQualidadeGrafica() + "]";
 	}
 	
 }

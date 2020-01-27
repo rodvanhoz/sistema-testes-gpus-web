@@ -3,12 +3,12 @@ package com.rvr.sistematestesgpus.entities.tables;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -33,7 +33,7 @@ public class Gpus implements Serializable {
 	@OneToOne
 	@JoinColumn(name = "IdRenderConfig")
 	private RenderConfig renderConfig;
-	
+		
 	private String nomeFabricante;
 	private String nomeModelo;
 	private Integer tamMemoriaKB;
@@ -46,6 +46,9 @@ public class Gpus implements Serializable {
 	private Double memClockEfetivo;
 	private String busInterface;
 	private Date dtLancto;
+	
+	@OneToOne(mappedBy = "gpu", cascade = CascadeType.ALL)
+	private TestesGpu testeGpu;
 	
 	public Gpus() {
 		

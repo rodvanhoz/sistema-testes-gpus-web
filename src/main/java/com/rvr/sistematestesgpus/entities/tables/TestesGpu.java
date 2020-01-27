@@ -3,13 +3,36 @@ package com.rvr.sistematestesgpus.entities.tables;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "TestesGpu")
 public class TestesGpu implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idTesteGpu;
-	private ConfiguracoesJogos ConfiguracaoJogo;
-	private Gpus Gpu;
-	private Processadores Processador;
+		
+	@OneToOne
+	@JoinColumn(name = "IdGpu")
+	private Gpus gpu;
+	
+	@OneToOne
+	@JoinColumn(name = "IdProcessador")
+	private Processadores processador;
+	
+	@OneToOne
+	@JoinColumn(name = "IdConfiguracaoJogo")
+	private ConfiguracoesJogos configuracaoJogo;
+	
 	private String nomeDriverGpu;
 	private Double avgFps;
 	private Double minFps;
@@ -23,9 +46,9 @@ public class TestesGpu implements Serializable {
 	public TestesGpu(Integer idTesteGpu, ConfiguracoesJogos configuracaoJogo, Gpus gpu, Processadores processador,
 			String nomeDriverGpu, Double avgFps, Double minFps, Date dtTeste, String nomeTester) {
 		this.idTesteGpu = idTesteGpu;
-		this.ConfiguracaoJogo = configuracaoJogo;
-		this.Gpu = gpu;
-		this.Processador = processador;
+		this.configuracaoJogo = configuracaoJogo;
+		this.gpu = gpu;
+		this.processador = processador;
 		this.nomeDriverGpu = nomeDriverGpu;
 		this.avgFps = avgFps;
 		this.minFps = minFps;
@@ -42,27 +65,27 @@ public class TestesGpu implements Serializable {
 	}
 	
 	public ConfiguracoesJogos getConfiguracaoJogo() {
-		return ConfiguracaoJogo;
+		return configuracaoJogo;
 	}
 	
 	public void setConfiguracaoJogo(ConfiguracoesJogos configuracaoJogo) {
-		ConfiguracaoJogo = configuracaoJogo;
+		this.configuracaoJogo = configuracaoJogo;
 	}
 	
 	public Gpus getGpu() {
-		return Gpu;
+		return gpu;
 	}
 	
 	public void setGpu(Gpus gpu) {
-		Gpu = gpu;
+		this.gpu = gpu;
 	}
 	
 	public Processadores getProcessador() {
-		return Processador;
+		return processador;
 	}
 	
 	public void setProcessador(Processadores processador) {
-		Processador = processador;
+		this.processador = processador;
 	}
 	
 	public String getNomeDriverGpu() {
@@ -109,10 +132,12 @@ public class TestesGpu implements Serializable {
 		return serialVersionUID;
 	}
 	
+	
+	
 	@Override
 	public String toString() {
-		return "TestesGpu [idTesteGpu=" + idTesteGpu + ", ConfiguracaoJogo=" + ConfiguracaoJogo + ", Gpu=" + Gpu.getNomeModelo()
-				+ ", Processador=" + Processador.getNomeModelo() + ", nomeDriverGpu=" + nomeDriverGpu + ", avgFps=" + avgFps
+		return "TestesGpu [idTesteGpu=" + idTesteGpu + ", ConfiguracaoJogo=" + configuracaoJogo + ", Gpu=" + gpu.getNomeModelo()
+				+ ", Processador=" + processador.getNomeModelo() + ", nomeDriverGpu=" + nomeDriverGpu + ", avgFps=" + avgFps
 				+ ", minFps=" + minFps + ", dtTeste=" + dtTeste + ", nomeTester=" + nomeTester + "]";
 	}
 	

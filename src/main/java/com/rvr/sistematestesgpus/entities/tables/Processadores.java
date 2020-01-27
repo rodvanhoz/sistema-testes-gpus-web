@@ -3,6 +3,7 @@ package com.rvr.sistematestesgpus.entities.tables;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -42,6 +43,10 @@ public class Processadores implements Serializable {
 	private Integer smp;
 	private Gpus Gpu;
 	private Double tdp;
+	
+	@OneToOne(mappedBy = "processador", cascade = CascadeType.ALL)
+	private TestesGpu testeGpu;
+
 	
 	public Processadores() {
 		

@@ -17,6 +17,7 @@ import com.rvr.sistematestesgpus.entities.tables.Jogos;
 import com.rvr.sistematestesgpus.entities.tables.ProcessadorGrafico;
 import com.rvr.sistematestesgpus.entities.tables.Processadores;
 import com.rvr.sistematestesgpus.entities.tables.RenderConfig;
+import com.rvr.sistematestesgpus.entities.tables.TestesGpu;
 import com.rvr.sistematestesgpus.repositories.CaracteristicasGraficasRepository;
 import com.rvr.sistematestesgpus.repositories.ConfiguracoesJogosRepository;
 import com.rvr.sistematestesgpus.repositories.ConfiguracoesRepository;
@@ -24,7 +25,9 @@ import com.rvr.sistematestesgpus.repositories.DadosProcessadorRepository;
 import com.rvr.sistematestesgpus.repositories.GpusRepository;
 import com.rvr.sistematestesgpus.repositories.JogosRepository;
 import com.rvr.sistematestesgpus.repositories.ProcessadorGraficoRepository;
+import com.rvr.sistematestesgpus.repositories.ProcessadoresRepository;
 import com.rvr.sistematestesgpus.repositories.RenderConfigRepository;
+import com.rvr.sistematestesgpus.repositories.TestesGpuRepository;
 
 @Configuration
 @Profile("test")
@@ -46,6 +49,9 @@ public class TestConfig implements CommandLineRunner {
 	private ProcessadorGraficoRepository processadorGraficoRepository;
 	
 	@Autowired
+	private ProcessadoresRepository processadorRepository;
+	
+	@Autowired
 	private CaracteristicasGraficasRepository caracteristicasGraficasRepository;
 	
 	@Autowired
@@ -53,6 +59,9 @@ public class TestConfig implements CommandLineRunner {
 	
 	@Autowired
 	private GpusRepository gpuRepository; 
+	
+	@Autowired
+	private TestesGpuRepository testesGpusRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -73,11 +82,11 @@ public class TestConfig implements CommandLineRunner {
 		configuracoesJogosRepository.saveAll(Arrays.asList(cj1, cj2, cj3));
 		
 		DadosProcessador dp1 = new DadosProcessador(null, "Intel Socket 1151", "Intel", 14, null, "FC-LGA1151", 72.0);
-		dadosProcessadorRepository.saveAll(Arrays.asList(dp1));
 		
 		Processadores p1 = new Processadores(null, dp1, "Intel", "Core i7-8700", "Desktop",  sdf.parse("10/01/2010"), "Coffee Lake", null, "DDR4", 3200.0, 4600.0, 100.0, 32.0, "N", 6, 12, 1, null, 65.0);
 		dp1.setProcessador(p1);
 		dadosProcessadorRepository.saveAll(Arrays.asList(dp1));
+		processadorRepository.saveAll(Arrays.asList(p1));
 		
 		
 		ProcessadorGrafico pg1 = new ProcessadorGrafico(null, "Navi 10", "Navi 10 XT ", "RDNA 1.0", "TSMC", 7, 10.300 , 251);
@@ -100,15 +109,9 @@ public class TestConfig implements CommandLineRunner {
 		Gpus g2 = new Gpus(null, pg2, cg3, rc1, "NVIDIA", "GeForce RTX 2080 SUPER", 8192, "GDDR6", 256, 160.0, 1470.0, 1650.0, 1750.0, 14000.0, "PCIe 3.0 x16", sdf.parse("10/01/2010"));
 		Gpus g3 = new Gpus(null, pg3, cg2, rc3, "NVIDIA", "GeForce RTX 2060 SUPER", 8192, "GDDR6", 256, 160.0, 1470.0, 1650.0, 1750.0, 14000.0, "PCIe 3.0 x16", sdf.parse("10/01/2010"));
 		
-//		pg1.setGpu(g1);
-//		cg1.setGpu(g1);
-//		rc1.setGpu(g1);
-		
-//		processadorGraficoRepository.saveAll(Arrays.asList(pg1));
-//		caracteristicasGraficasRepository.saveAll(Arrays.asList(cg1));
-//		renderConfigRepository.saveAll(Arrays.asList(rc1));
-		
-		gpuRepository.saveAll(Arrays.asList(g1, g2, g3));
+		TestesGpu teste01 = new TestesGpu(null, cj1, g1, p1, "Driver Teste", 100.0, 0.0, sdf.parse("10/01/2015"), "Rodrigo");
+		gpuRepository.saveAll(Arrays.asList(g1,g2,g3));
+		testesGpusRepository.saveAll(Arrays.asList(teste01));
 }
 	
 	
