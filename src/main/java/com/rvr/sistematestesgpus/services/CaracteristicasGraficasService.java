@@ -10,27 +10,27 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.rvr.sistematestesgpus.entities.tables.ProcessadorGrafico;
-import com.rvr.sistematestesgpus.repositories.ProcessadorGraficoRepository;
+import com.rvr.sistematestesgpus.entities.tables.CaracteristicasGraficas;
+import com.rvr.sistematestesgpus.repositories.CaracteristicasGraficasRepository;
 import com.rvr.sistematestesgpus.services.exceptions.DatabaseException;
 import com.rvr.sistematestesgpus.services.exceptions.ResourceNotFoundException;
 
 @Service
-public class ProcessadorGraficoService {
+public class CaracteristicasGraficasService {
 
 	@Autowired
-	private ProcessadorGraficoRepository repository;
+	private CaracteristicasGraficasRepository repository;
 	
-	public List<ProcessadorGrafico> findAll() {
+	public List<CaracteristicasGraficas> findAll() {
 		return repository.findAll();
 	}
 	
-	public ProcessadorGrafico findById(Integer id) {
-		Optional<ProcessadorGrafico> obj = repository.findById(id); 
+	public CaracteristicasGraficas findById(Integer id) {
+		Optional<CaracteristicasGraficas> obj = repository.findById(id); 
 		return obj.get();
 	}
 	
-	public ProcessadorGrafico insert(ProcessadorGrafico obj) {
+	public CaracteristicasGraficas insert(CaracteristicasGraficas obj) {
 		return repository.save(obj);
 	}
 	
@@ -48,9 +48,9 @@ public class ProcessadorGraficoService {
 		
 	}
 	
-	public ProcessadorGrafico update(Integer id, ProcessadorGrafico obj) {
+	public CaracteristicasGraficas update(Integer id, CaracteristicasGraficas obj) {
 		try {
-			ProcessadorGrafico entity = repository.getOne(id);
+			CaracteristicasGraficas entity = repository.getOne(id);
 			updateData(entity, obj);
 			return repository.save(entity);
 		} 
@@ -59,14 +59,13 @@ public class ProcessadorGraficoService {
 		}
 	}
 
-	private void updateData(ProcessadorGrafico entity, ProcessadorGrafico obj) {
+	private void updateData(CaracteristicasGraficas entity, CaracteristicasGraficas obj) {
 		
-		entity.setArquitetura(obj.getArquitetura());
-		entity.setFundicao(obj.getFundicao());
-		entity.setMmProcessador(obj.getMmProcessador());
-		entity.setNnProcessador(obj.getNnProcessador());
-		entity.setNomeGpu(obj.getNomeGpu());
-		entity.setNroTransistors(obj.getNroTransistors());
-		entity.setVariantGpu(obj.getVariantGpu());
+		entity.setCuda(obj.getCuda());
+		entity.setDirectX(obj.getDirectX());
+		entity.setOpenCL(obj.getOpenCL());
+		entity.setOpenGL(obj.getOpenGL());
+		entity.setShaderModel(obj.getShaderModel());
+		entity.setVulkan(obj.getVulkan());
 	}
 }
