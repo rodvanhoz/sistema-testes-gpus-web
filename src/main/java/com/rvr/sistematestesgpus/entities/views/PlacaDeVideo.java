@@ -3,6 +3,8 @@ package com.rvr.sistematestesgpus.entities.views;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.rvr.sistematestesgpus.entities.tables.Gpus;
+
 public class PlacaDeVideo implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -59,6 +61,32 @@ public class PlacaDeVideo implements Serializable {
 		this.tdp = tdp;
 		this.busInterface = busInterface;
 		this.dtLancto = dtLancto;
+	}
+	
+	public PlacaDeVideo(Gpus gpu) {
+		
+		this.idGpu = gpu.getIdGpu();
+		this.nomeFabricante = gpu.getNomeFabricante();
+		this.nomeModelo = gpu.getNomeModelo();
+		this.nomeGpu = gpu.getProcessadorGrafico().getNomeGpu();
+		this.arquitetura = gpu.getProcessadorGrafico().getArquitetura();
+		this.shadingUnits = gpu.getRenderConfig().getShadingUnits();
+		this.rops = gpu.getRenderConfig().getRops();
+		this.tmus = gpu.getRenderConfig().getTmus();
+		this.tamMemoriaKB = gpu.getTamMemoriaKB();
+		this.tpMemoria = gpu.getTpMemoria();
+		this.gpuClock = gpu.getGpuClock();
+		this.boostClock = gpu.getBoostClock();
+		this.directX = gpu.getCaracteristicasGraficas().getDirectX();
+		this.openGL = gpu.getCaracteristicasGraficas().getOpenGL();
+		this.openCL = gpu.getCaracteristicasGraficas().getOpenCL();
+		this.vulkan = gpu.getCaracteristicasGraficas().getVulkan();
+		this.memClock = gpu.getMemClock();
+		this.memClockEfetivo = gpu.getMemClockEfetivo();
+		this.tamBanda = gpu.getTamBanda();
+		this.tdp = gpu.getTdp();
+		this.busInterface = gpu.getBusInterface();
+		this.dtLancto = gpu.getDtLancto();
 	}
 
 	public Integer getIdGpu() {

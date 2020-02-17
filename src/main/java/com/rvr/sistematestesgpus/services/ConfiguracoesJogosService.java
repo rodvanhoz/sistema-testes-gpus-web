@@ -1,5 +1,6 @@
 package com.rvr.sistematestesgpus.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,20 +12,23 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.rvr.sistematestesgpus.entities.tables.ConfiguracoesJogos;
+import com.rvr.sistematestesgpus.entities.views.ConfiguracoesJogosW;
 import com.rvr.sistematestesgpus.repositories.ConfiguracoesJogosRepository;
 import com.rvr.sistematestesgpus.services.exceptions.DatabaseException;
 import com.rvr.sistematestesgpus.services.exceptions.ResourceNotFoundException;
 
 @Service
-public class ConfiguracoesJogosService {
+public class ConfiguracoesJogosService implements ServiceWithView<ConfiguracoesJogos, ConfiguracoesJogosW> {
 
 	@Autowired
 	private ConfiguracoesJogosRepository repository;
 	
+	@Override
 	public List<ConfiguracoesJogos> findAll() {
 		return repository.findAll();
 	}
 	
+	@Override
 	public ConfiguracoesJogos findById(Integer id) {
 		Optional<ConfiguracoesJogos> obj = repository.findById(id); 
 		return obj.get();
@@ -34,6 +38,29 @@ public class ConfiguracoesJogosService {
 		return repository.save(obj);
 	}
 	
+	@Override
+	public List<ConfiguracoesJogosW> findAllView() {
+		
+		return createListView(findAll());
+	}
+	
+	private List<ConfiguracoesJogosW> createListView(List<ConfiguracoesJogos> configuracoesJogosList) {
+		
+		List<ConfiguracoesJogosW> viewList = new ArrayList<>();
+		configuracoesJogosList
+				.stream()
+				.forEach(e ->
+					viewList.add(new ConfiguracoesJogosW(e)));
+		
+		return viewList;
+	}
+	
+	@Override
+	public ConfiguracoesJogosW findByIdView(Integer id) {
+		
+		return new ConfiguracoesJogosW(findById(id));
+	}
+
 	public void delete(Integer id) {
 		
 		try {

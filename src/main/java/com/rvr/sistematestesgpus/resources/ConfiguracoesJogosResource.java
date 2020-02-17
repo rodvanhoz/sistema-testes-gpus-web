@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.rvr.sistematestesgpus.entities.tables.ConfiguracoesJogos;
+import com.rvr.sistematestesgpus.entities.views.ConfiguracoesJogosW;
 import com.rvr.sistematestesgpus.services.ConfiguracoesJogosService;
 import com.rvr.sistematestesgpus.services.ConfiguracoesService;
 import com.rvr.sistematestesgpus.services.JogosService;
@@ -41,7 +42,10 @@ public class ConfiguracoesJogosResource {
 	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<ConfiguracoesJogos> findById(@PathVariable Integer id) {
-	
+
+		ConfiguracoesJogosW conf = service.findByIdView(id);
+		System.out.println(conf);
+		
 		return ResponseEntity.ok().body(service.findById(id));
 	}
 	

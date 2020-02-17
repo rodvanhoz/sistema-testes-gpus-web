@@ -111,6 +111,7 @@ public class TestConfig implements CommandLineRunner {
 		TestesGpu teste01 = new TestesGpu(null, cj1, g1, p1, "Driver Teste", 100.0, 0.0, sdf.parse("10/01/2015"), "Rodrigo");
 		gpuRepository.saveAll(Arrays.asList(g1,g2,g3));
 		testesGpusRepository.saveAll(Arrays.asList(teste01));
+		
 }
 	
 	

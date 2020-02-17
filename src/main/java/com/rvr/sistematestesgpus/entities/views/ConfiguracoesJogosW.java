@@ -3,6 +3,8 @@ package com.rvr.sistematestesgpus.entities.views;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.rvr.sistematestesgpus.entities.tables.ConfiguracoesJogos;
+
 public class ConfiguracoesJogosW implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -45,6 +47,27 @@ public class ConfiguracoesJogosW implements Serializable {
 		this.idConfiguracao = idConfiguracao;
 		this.idConfiguracaoJogo = idConfiguracaoJogo;
 	}
+	
+	public ConfiguracoesJogosW(ConfiguracoesJogos configuracaoJogo) {
+		
+		this.nomeJogo = configuracaoJogo.getJogo().getNomeJogo();
+		this.dtLancto = configuracaoJogo.getJogo().getDtLancto();
+		this.resolucaoAbrev = configuracaoJogo.getConfiguracao().getResolucaoAbrev();
+		this.resolucaoDetalhe = configuracaoJogo.getConfiguracao().getResolucaoDetalhe();
+		this.api = configuracaoJogo.getConfiguracao().getApi();
+		this.qualidadeGrafica = configuracaoJogo.getConfiguracao().getQualidadeGrafica();
+		this.ssao = configuracaoJogo.getConfiguracao().getSsao();
+		this.fxaa = configuracaoJogo.getConfiguracao().getFxaa();
+		this.taa = configuracaoJogo.getConfiguracao().getTaa();
+		this.rt = configuracaoJogo.getConfiguracao().getRt();
+		this.aa = configuracaoJogo.getConfiguracao().getAa();
+		this.NVidiaTec = configuracaoJogo.getConfiguracao().getNVidiaTec();
+		this.idJogo = configuracaoJogo.getJogo().getIdJogo();
+		this.idConfiguracao = configuracaoJogo.getConfiguracao().getIdConfiguracao();
+		this.idConfiguracaoJogo = configuracaoJogo.getIdConfiguracaoJogos();
+		
+	}
+
 
 	public String getNomeJogo() {
 		return nomeJogo;

@@ -3,6 +3,8 @@ package com.rvr.sistematestesgpus.entities.views;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.rvr.sistematestesgpus.entities.tables.TestesGpu;
+
 public class DadosTeste implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -61,6 +63,34 @@ public class DadosTeste implements Serializable {
 		this.idConfiguracaoJogo = idConfiguracaoJogo; 
 		this.idGpu = idGpu; 
 		this.idProcessador = idProcessador;
+	}
+	
+	public DadosTeste(TestesGpu testeGpu) {
+		
+		this.nomeModeloGpu = testeGpu.getGpu().getNomeModelo();
+		this.nomeModeloProcessador = testeGpu.getProcessador().getNomeModelo();
+		this.nomeJogo = testeGpu.getConfiguracaoJogo().getJogo().getNomeJogo();
+		this.resolucaoAbrev = testeGpu.getConfiguracaoJogo().getConfiguracao().getResolucaoAbrev();
+		this.qualidadeGrafica = testeGpu.getConfiguracaoJogo().getConfiguracao().getQualidadeGrafica();
+		this.api = testeGpu.getConfiguracaoJogo().getConfiguracao().getApi();
+		this.fxaa = testeGpu.getConfiguracaoJogo().getConfiguracao().getFxaa();
+		this.ssao = testeGpu.getConfiguracaoJogo().getConfiguracao().getSsao();
+		this.aa = testeGpu.getConfiguracaoJogo().getConfiguracao().getAa();
+		this.rt = testeGpu.getConfiguracaoJogo().getConfiguracao().getRt();
+		this.taa = testeGpu.getConfiguracaoJogo().getConfiguracao().getTaa();
+		this.NVidiaTec = testeGpu.getConfiguracaoJogo().getConfiguracao().getNVidiaTec();
+		this.avgFps = testeGpu.getAvgFps();
+		this.minFps = testeGpu.getMinFps();
+		this.nomeTester = testeGpu.getNomeTester();
+		this.dtTeste = testeGpu.getDtTeste();
+		this.nomeDriverGpu = testeGpu.getNomeDriverGpu();
+		this.idTesteGpu = testeGpu.getIdTesteGpu();
+		this.idJogo = testeGpu.getConfiguracaoJogo().getJogo().getIdJogo(); 
+		this.idConfiguracao = testeGpu.getConfiguracaoJogo().getConfiguracao().getIdConfiguracao(); 
+		this.idConfiguracaoJogo = testeGpu.getConfiguracaoJogo().getIdConfiguracaoJogos(); 
+		this.idGpu = testeGpu.getGpu().getIdGpu(); 
+		this.idProcessador = testeGpu.getProcessador().getIdProcessador();
+		
 	}
 
 	public String getNomeModeloGpu() {

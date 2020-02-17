@@ -2,6 +2,8 @@ package com.rvr.sistematestesgpus.entities.views;
 
 import java.io.Serializable;
 
+import com.rvr.sistematestesgpus.entities.tables.Processadores;
+
 public class Processador implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -37,6 +39,22 @@ public class Processador implements Serializable {
 		this.socket = socket;
 		this.graficoIntegrado = graficoIntegrado;
 		this.idDadosProcessador = idDadosProcessador;
+	}
+	
+	public Processador(Processadores processador) {
+		
+		this.idProcessador = processador.getIdProcessador();
+		this.nomeFabricante = processador.getNomeFabricante();
+		this.nomeModelo = processador.getNomeModelo();
+		this.nroCores = processador.getNroCores();
+		this.nroThreads = processador.getNroThreads();
+		this.tdp = processador.getTdp();
+		this.frequencia = processador.getFrequencia();
+		this.turboFrequencia = processador.getTurbofrequencia();
+		this.codeName = processador.getCodename();
+		this.socket = processador.getDadosProcessador().getSocket();
+		this.graficoIntegrado = (processador.getGpu() == null) ? "" : processador.getGpu().getNomeModelo();
+		this.idDadosProcessador = processador.getDadosProcessador().getIdDadosProcessador();
 	}
 
 	public int getIdDadosProcessador() {
